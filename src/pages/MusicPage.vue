@@ -1,7 +1,5 @@
 <template>
-  <div class="text-h2">
-    its 2-nd page
-  </div>
+  <div>TATAT</div>
 </template>
 
 <script>

@@ -3,12 +3,19 @@
     <aside class="menu-column column no-wrap">
       <q-btn label="Стартовая страничка" flat style="color: #ff0080" />
       <q-btn label="ToDo лист" flat style="color: #ff0080" />
-      <q-btn label="Музыкальная" flat style="color: #ff0080" />
+      <q-btn
+        label="Музыкальная"
+        flat
+        style="color: #ff0080"
+        @click="test"
+      />
       <q-btn label="and more..." flat style="color: #ff0080" />
     </aside>
     <div class="content-column">
       <main class="text-h3 q-ma-sm">
-        <q-card style="background: radial-gradient(circle, #8c47e0 0%, #ff0080 100%)">
+        <q-card
+          style="background: radial-gradient(circle, #8c47e0 0%, #ff0080 100%)"
+        >
           <div class="row no-wrap flex-center q-mb-md">
             <q-icon name="keyboard_double_arrow_down" />
             <span class="text-h4 text-center">
@@ -84,11 +91,11 @@ export default defineComponent({
   name: "IndexPage",
 
   mounted() {
-    window.addEventListener("scroll", this.test);
+    window.addEventListener("scroll", this.funyScroll);
   },
 
   beforeDestroy() {
-    window.removeEventListener("scroll", this.test);
+    window.removeEventListener("scroll", this.funyScroll);
   },
 
   data() {
@@ -108,6 +115,11 @@ export default defineComponent({
 
   methods: {
     test() {
+      router.push('/music')
+      console.log(10);
+    },
+
+    funyScroll() {
       const allPageHeight = document.body.scrollHeight - window.innerHeight;
       const positinY = window.scrollY;
       const percentY = Math.round((positinY * 100) / allPageHeight);
