@@ -3,12 +3,7 @@
     <aside class="menu-column column no-wrap">
       <q-btn label="Стартовая страничка" flat style="color: #ff0080" />
       <q-btn label="ToDo лист" flat style="color: #ff0080" />
-      <q-btn
-        label="Музыкальная"
-        flat
-        style="color: #ff0080"
-        @click="test"
-      />
+      <q-btn label="Музыкальная" flat style="color: #ff0080" @click="test" />
       <q-btn label="and more..." flat style="color: #ff0080" />
     </aside>
     <div class="content-column">
@@ -115,8 +110,7 @@ export default defineComponent({
 
   methods: {
     test() {
-      router.push('/music')
-      console.log(10);
+      this.$router.push("/music");
     },
 
     funyScroll() {
