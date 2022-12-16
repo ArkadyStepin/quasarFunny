@@ -1,5 +1,6 @@
 <template>
-  <q-page>
+  <q-page class="row no-wrap justify-between">
+    <left-aside />
     <div class="content">
       <div>
         Это музыкальная страничка, сюда ты можешь подгрузить свою музыку, а
@@ -9,15 +10,32 @@
         Принци работы прост. В зависимости от частоты, и тд и тп, потом напишу
         ща чет подзабыл как че там работает
       </div>
-    </div>
-    <div class="full-width">
-      <canvas ref="canvasDiv"></canvas>
+      <div class="full-width">
+        <input type="file" accept="audio/*" @change="addFile" ref="musicFile" />
+        <audio controls ref="audioControll"></audio>
+        <canvas ref="canvasDiv"></canvas>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script>
-export default {};
+import LeftAside from "../components/LeftAside.vue";
+export default {
+  components: { LeftAside },
+
+  methods: {
+    addFile() {
+      const musicFiles = this.$refs.musicFile.files;
+      const audioControll = this.$refs.audioControll;
+      audioControll.src = URL.createObjectURL(musicFiles[0]);
+      audioControll.load();
+      audioControll.play();
+
+      console.log(audioControll);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

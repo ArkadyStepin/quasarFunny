@@ -1,11 +1,6 @@
 <template>
   <q-page class="row no-wrap justify-between">
-    <aside class="menu-column column no-wrap">
-      <q-btn label="Стартовая страничка" flat style="color: #ff0080" />
-      <q-btn label="ToDo лист" flat style="color: #ff0080" />
-      <q-btn label="Музыкальная" flat style="color: #ff0080" @click="test" />
-      <q-btn label="and more..." flat style="color: #ff0080" />
-    </aside>
+    <left-aside />
     <div class="content-column">
       <main class="text-h3 q-ma-sm">
         <q-card
@@ -19,49 +14,53 @@
             <q-icon name="keyboard_double_arrow_down" />
           </div>
         </q-card>
-        <div class="q-my-xl">скроль меня полностью!</div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac
-        est est. Phasellus eu metus a est semper fringilla. Vestibulum rutrum
-        cursus luctus. Vestibulum eget dolor nec mi venenatis convallis. Sed sit
-        amet dui sit amet ipsum lacinia lobortis. Mauris dictum purus ut tellus
-        auctor, a blandit tortor lobortis. Pellentesque quam odio, porttitor non
-        lacinia gravida, mattis a libero. Pellentesque rutrum augue id luctus
-        sodales. Vestibulum sit amet risus ac turpis interdum vehicula.
-        Suspendisse a libero nec ligula porta tempor. Nulla quis sapien porta,
-        pharetra sapien sit amet, auctor risus. Donec sagittis libero ac mi
-        finibus tristique. Cras vitae nunc venenatis, auctor nulla at, ultricies
-        purus. Duis mi erat, dictum ac lobortis vitae, sodales eget nulla.
-        Nullam in massa ut enim varius volutpat quis a tortor. Morbi eu ipsum
-        dui. Curabitur mollis leo scelerisque est porttitor, eget lacinia purus
-        maximus. Nullam ac tincidunt leo. Quisque maximus odio leo, quis
-        convallis mauris imperdiet ac. Orci varius natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus. Integer augue purus,
-        congue eget erat vel, ornare tempus urna. Integer mattis pulvinar risus,
-        sit amet mattis diam euismod non. Suspendisse potenti. Vestibulum
-        pulvinar, risus ut imperdiet hendrerit, mi nibh varius lacus, eget
-        fermentum ex nunc a lectus. Nam mollis massa ut risus rhoncus, eget
-        suscipit ligula posuere. Proin mollis, urna sed imperdiet iaculis, massa
-        est mollis urna, vel vehicula purus orci eget massa. Proin at placerat
-        velit. Morbi mollis erat consectetur purus pharetra, ac auctor dui
-        fermentum. Aenean et feugiat sem, sed interdum libero. Aenean bibendum
-        ante a mauris iaculis, ac sollicitudin velit aliquet. Donec vel ultrices
-        ex. Proin ac laoreet quam. Suspendisse auctor malesuada tellus, at
-        congue odio luctus non. Praesent congue eleifend est, nec convallis mi
-        dictum quis. Donec ultricies tempus lorem, vel hendrerit sapien iaculis
-        non. Cras id augue id neque facilisis placerat a vitae sem. Phasellus
-        iaculis dui nunc, ut consequat lacus mattis vitae. Nunc laoreet a tellus
-        in dictum. Nulla ut venenatis velit. Nunc interdum finibus lectus, ac
-        pulvinar dui cursus vitae. Aliquam sit amet lorem varius, pellentesque
-        diam non, interdum nisl. Morbi efficitur libero non fermentum luctus.
-        Nullam aliquet tortor sit amet arcu volutpat, ac accumsan dui tincidunt.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris id
-        erat vitae lacus mollis fringilla quis mattis augue. In laoreet bibendum
-        enim, ac tempus elit ultricies quis. Vivamus sit amet lorem eu nisl
-        facilisis consectetur. Sed nibh lectus, congue eu fringilla non,
-        dignissim eget sem. Ut a est quam. Nulla sed condimentum risus. Praesent
-        congue felis sed consectetur luctus. Pellentesque urna ex, egestas eu ex
-        et, mollis luctus mauris. Aliquam quis feugiat odio, eu pulvinar leo.
-        Generated 5 paragraphs, 438 words, 2875 bytes of Lorem Ipsum
+        <div class="q-my-xl">
+          скроль меня полностью! Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Pellentesque ac est est. Phasellus eu metus a est
+          semper fringilla. Vestibulum rutrum cursus luctus. Vestibulum eget
+          dolor nec mi venenatis convallis. Sed sit amet dui sit amet ipsum
+          lacinia lobortis. Mauris dictum purus ut tellus auctor, a blandit
+          tortor lobortis. Pellentesque quam odio, porttitor non lacinia
+          gravida, mattis a libero. Pellentesque rutrum augue id luctus sodales.
+          Vestibulum sit amet risus ac turpis interdum vehicula. Suspendisse a
+          libero nec ligula porta tempor. Nulla quis sapien porta, pharetra
+          sapien sit amet, auctor risus. Donec sagittis libero ac mi finibus
+          tristique. Cras vitae nunc venenatis, auctor nulla at, ultricies
+          purus. Duis mi erat, dictum ac lobortis vitae, sodales eget nulla.
+          Nullam in massa ut enim varius volutpat quis a tortor. Morbi eu ipsum
+          dui. Curabitur mollis leo scelerisque est porttitor, eget lacinia
+          purus maximus. Nullam ac tincidunt leo. Quisque maximus odio leo, quis
+          convallis mauris imperdiet ac. Orci varius natoque penatibus et magnis
+          dis parturient montes, nascetur ridiculus mus. Integer augue purus,
+          congue eget erat vel, ornare tempus urna. Integer mattis pulvinar
+          risus, sit amet mattis diam euismod non. Suspendisse potenti.
+          Vestibulum pulvinar, risus ut imperdiet hendrerit, mi nibh varius
+          lacus, eget fermentum ex nunc a lectus. Nam mollis massa ut risus
+          rhoncus, eget suscipit ligula posuere. Proin mollis, urna sed
+          imperdiet iaculis, massa est mollis urna, vel vehicula purus orci eget
+          massa. Proin at placerat velit. Morbi mollis erat consectetur purus
+          pharetra, ac auctor dui fermentum. Aenean et feugiat sem, sed interdum
+          libero. Aenean bibendum ante a mauris iaculis, ac sollicitudin velit
+          aliquet. Donec vel ultrices ex. Proin ac laoreet quam. Suspendisse
+          auctor malesuada tellus, at congue odio luctus non. Praesent congue
+          eleifend est, nec convallis mi dictum quis. Donec ultricies tempus
+          lorem, vel hendrerit sapien iaculis non. Cras id augue id neque
+          facilisis placerat a vitae sem. Phasellus iaculis dui nunc, ut
+          consequat lacus mattis vitae. Nunc laoreet a tellus in dictum. Nulla
+          ut venenatis velit. Nunc interdum finibus lectus, ac pulvinar dui
+          cursus vitae. Aliquam sit amet lorem varius, pellentesque diam non,
+          interdum nisl. Morbi efficitur libero non fermentum luctus. Nullam
+          aliquet tortor sit amet arcu volutpat, ac accumsan dui tincidunt.
+          Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris
+          id erat vitae lacus mollis fringilla quis mattis augue. In laoreet
+          bibendum enim, ac tempus elit ultricies quis. Vivamus sit amet lorem
+          eu nisl facilisis consectetur. Sed nibh lectus, congue eu fringilla
+          non, dignissim eget sem. Ut a est quam. Nulla sed condimentum risus.
+          Praesent congue felis sed consectetur luctus. Pellentesque urna ex,
+          egestas eu ex et, mollis luctus mauris. Aliquam quis feugiat odio, eu
+          pulvinar leo. Generated 5 paragraphs, 438 words, 2875 bytes of Lorem
+          Ipsum
+        </div>
       </main>
     </div>
     <aside class="funy-scroll-column text-center column no-wrap q-gutter-y-md">
@@ -81,8 +80,10 @@
 
 <script>
 import { defineComponent } from "vue";
+import LeftAside from "../components/LeftAside.vue";
 
 export default defineComponent({
+  components: { LeftAside },
   name: "IndexPage",
 
   mounted() {
@@ -109,9 +110,6 @@ export default defineComponent({
   },
 
   methods: {
-    test() {
-      this.$router.push("/music");
-    },
 
     funyScroll() {
       const allPageHeight = document.body.scrollHeight - window.innerHeight;
