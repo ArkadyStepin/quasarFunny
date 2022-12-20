@@ -16,9 +16,11 @@
         <canvas ref="canvasDiv"></canvas>
       </div>
       <div class="home">
-        <h1>DropZone</h1>
-        <DropZone @drop.prevent="drop" @change="selectedFile" />
-        <span class="file-info">File: {{ dropzoneFile.name }}</span>
+        <DropZone
+          @drop.prevent="dropTest"
+          @change="selectedFileTest"
+          ref="dropMusicFile"
+        />
       </div>
     </div>
   </q-page>
@@ -42,25 +44,22 @@ export default {
 
       // console.log(audioControll);
     },
+
+    dropTest(e) {
+      let reg = /audio/;
+      let dropzoneFile = ref("");
+      dropzoneFile = e.dataTransfer.files[0];
+      console.log(dropzoneFile);
+      if (reg.test(dropzoneFile.type) === true) {
+        // const dropMusicFiles = this.$refs.dropMusicFile.files;
+        // console.log(dropMusicFiles);
+        console.log("zaebis");
+      } else console.log("sosi");
+    },
+
     selectedFileTest() {
       dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
     },
-  },
-
-  setup() {
-    let reg = /audio/;
-    let dropzoneFile = ref("");
-    const drop = (e) => {
-      dropzoneFile.value = e.dataTransfer.files[0];
-      if (reg.test(dropzoneFile.value.type) === true) {
-        console.log("zaebis");
-      } else console.log("sosi");
-    };
-
-    const selectedFile = () => {
-      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
-    };
-    return { dropzoneFile, drop, selectedFile };
   },
 };
 </script>
