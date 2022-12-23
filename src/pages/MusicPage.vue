@@ -16,11 +16,7 @@
         <canvas ref="canvasDiv"></canvas>
       </div>
       <div class="home">
-        <DropZone
-          @drop.prevent="dropTest"
-          @change="selectedFile"
-          ref="dropMusicFile"
-        />
+        <DropZone @drop.prevent="drop" ref="dropMusicFile" />
       </div>
     </div>
   </q-page>
@@ -45,21 +41,17 @@ export default {
       // console.log(audioControll);
     },
     // работает ток с 1 файлом, будь человеком, мапни все
-    dropTest(e) {
+    drop(e) {
       let reg = /audio/;
       let dropzoneFile = ref("");
+      const audioControll = this.$refs.audioControll;
       dropzoneFile = e.dataTransfer.files[0];
-      console.log(dropzoneFile);
       if (reg.test(dropzoneFile.type) === true) {
-        // const dropMusicFiles = this.$refs.dropMusicFile.files;
-        // console.log(dropMusicFiles);
+        audioControll.src = URL.createObjectURL(dropzoneFile);
+        audioControll.load();
+        audioControll.play();
         console.log("zaebis");
       } else console.log("sosi");
-    },
-
-    selectedFile() {
-      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
-      console.log(dropzoneFile.value);
     },
   },
 };
