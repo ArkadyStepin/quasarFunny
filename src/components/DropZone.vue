@@ -9,8 +9,8 @@
   >
     <span>Drag or Drop File</span>
     <span>OR</span>
-    <label for="dropzoneFile">Select File</label>
-    <input type="file" id="dropzoneFile" class="dropzoneFile" accept="audio/*" />
+    <!-- <label for="dropzoneFile">Select File</label> -->
+    <!-- <input type="file" id="dropzoneFile" class="dropzoneFile" accept="audio/*" /> -->
   </div>
 </template>
 

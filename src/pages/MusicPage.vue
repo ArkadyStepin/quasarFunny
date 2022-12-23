@@ -18,7 +18,7 @@
       <div class="home">
         <DropZone
           @drop.prevent="dropTest"
-          @change="selectedFileTest"
+          @change="selectedFile"
           ref="dropMusicFile"
         />
       </div>
@@ -44,7 +44,7 @@ export default {
 
       // console.log(audioControll);
     },
-
+    // работает ток с 1 файлом, будь человеком, мапни все
     dropTest(e) {
       let reg = /audio/;
       let dropzoneFile = ref("");
@@ -57,8 +57,9 @@ export default {
       } else console.log("sosi");
     },
 
-    selectedFileTest() {
+    selectedFile() {
       dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
+      console.log(dropzoneFile.value);
     },
   },
 };
