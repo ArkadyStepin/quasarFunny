@@ -42,9 +42,6 @@ export default {
 
       // console.log(audioControll);
     },
-    selectedFileTest() {
-      dropzoneFile.value = document.querySelector(".dropzoneFile").files[0];
-    },
   },
 
   setup() {
