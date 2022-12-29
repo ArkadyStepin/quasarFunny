@@ -14,9 +14,9 @@
       <div class="full-width">
         <input type="file" accept="audio/*" @change="addFile" ref="musicFile" />
         <audio controls ref="audioControll"></audio>
-        <canvas ref="canvasDiv"></canvas>
+        <canvas class="fit" ref="canvasDiv" v-show="showCanvas" ></canvas>
       </div>
-      <div class="home" v-show="showBlock">
+      <div class="home" v-show="showDropzone">
         <DropZone @drop.prevent="drop" ref="dropMusicFile" />
       </div>
     </div>
@@ -33,7 +33,8 @@ export default {
 
   data() {
     return {
-      showBlock: true,
+      showDropzone: true,
+      showCanvas: false,
     };
   },
 
@@ -115,7 +116,8 @@ export default {
 
       dropzoneFile = e.dataTransfer.files[0];
       if (reg.test(dropzoneFile.type) === true) {
-        this.showBlock = false;
+        this.showCanvas = true;
+        this.showDropzone = false;
         const audioControll = this.$refs.audioControll;
         const canvas = this.$refs.canvasDiv;
         const ctx = canvas.getContext("2d");
@@ -190,6 +192,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .home {
   height: 100vh;
   display: flex;

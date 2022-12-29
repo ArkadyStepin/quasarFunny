@@ -65,9 +65,9 @@ export default {
     display: none;
   }
 }
-.dropzone:hover {
-  background: #41b8835a;
-}
+// .dropzone:hover {
+//   background: #41b8835a;
+// }
 .active-dropzone {
   color: #fff;
   border-color: #fff;
