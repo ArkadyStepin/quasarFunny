@@ -7,13 +7,13 @@
     :class="{ 'active-dropzone': active }"
     class="dropzone"
   >
-    <!-- <span>Drag or Drop File</span>
-    <span>OR</span> -->
-    <label for="dropzoneFile">Select File</label>
+    <span></span>
+    <label for="dropzoneFile" class="text-center"
+      >Drag and drop file, <br />
+      or tap here for select file</label
+    >
     <input
       type="file"
-      ref="musicFile"
-      @change="readFile"
       id="dropzoneFile"
       class="dropzoneFile"
       accept="audio/*"
@@ -22,23 +22,17 @@
 </template>
 
 <script>
-import { ref } from "vue";
 export default {
   name: "DropZone",
 
-
-  // setup() {
-  //   const active = ref(false);
-  //   const toggleActive = () => {
-  //     active.value = !active.value;
-  //   };
-  //   return { active, toggleActive };
-  // },
-
+  data() {
+    return {
+      active: false,
+    };
+  },
   methods: {
-    readFile() {
-      const musicFiles = this.$refs.musicFile.files;
-      console.log(musicFiles);
+    toggleActive() {
+      this.active = !this.active;
     },
   },
 };
@@ -66,16 +60,12 @@ export default {
     display: none;
   }
 }
-// .dropzone:hover {
-//   background: #41b8835a;
-// }
+.dropzone:hover {
+  background: #41b8835a;
+}
 .active-dropzone {
   color: #fff;
   border-color: #fff;
   background-color: #41b883;
-  label {
-    background-color: #fff;
-    color: #41b883;
-  }
 }
 </style>
