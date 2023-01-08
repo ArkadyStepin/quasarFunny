@@ -19,9 +19,12 @@
         <DropZone @drop.prevent="drop" ref="dropMusicFile" />
       </div>
     </div>
+    <div class="q-pa-md"></div>
     <div class="audio-bar">
       <audio ref="audioControll"></audio>
       <q-btn label="play" color="grey-4" @click="play" />
+      <q-btn label="pause" color="grey-4" @click="pause" />
+      <q-btn label="muted" color="grey-4" @click="muted" />
     </div>
   </q-page>
 </template>
@@ -45,6 +48,16 @@ export default {
     play() {
       this.$refs.audioControll.play();
     },
+    pause() {
+      this.$refs.audioControll.pause();
+    },
+    muted() {
+      if (this.$refs.audioControll.volume === 0) {
+        this.$refs.audioControll.volume = 1;
+      } else this.$refs.audioControll.volume = 0;
+      console.log(this.$refs.audioControll.volume);
+    },
+
     // работает ток с 1 файлом, будь человеком, мапни все
     drop(e) {
       let reg = /audio/;
