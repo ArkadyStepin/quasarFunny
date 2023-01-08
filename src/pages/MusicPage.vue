@@ -19,12 +19,28 @@
         <DropZone @drop.prevent="drop" ref="dropMusicFile" />
       </div>
     </div>
-    <div class="q-pa-md"></div>
-    <div class="audio-bar">
-      <audio ref="audioControll"></audio>
-      <q-btn label="play" color="grey-4" @click="play" />
-      <q-btn label="pause" color="grey-4" @click="pause" />
-      <q-btn label="muted" color="grey-4" @click="muted" />
+    <div class="audio-bar row no-wrap justify-between">
+      <div>
+        <audio ref="audioControll"></audio>
+        <q-btn label="play" color="grey-4" @click="play" />
+        <q-btn label="pause" color="grey-4" @click="pause" />
+        <q-btn label="muted" color="grey-4" @click="muted" />
+      </div>
+      <div class="q-pa-xs" @mouseenter="showVolFn" @mouseleave="showVolFn">
+        <div class="volume-pop-up" v-show="showVol">
+          <q-slider
+            @change="changeVol"
+            v-model="volumeSlider"
+            :min="0"
+            :max="100"
+            color="purple-11"
+            vertical
+            reverse
+          />
+        </div>
+        <q-icon name="volume_up" class="q-ma-xs vol-iqo" />
+        <q-badge class="vol-percent"> {{ volumeSlider }}% </q-badge>
+      </div>
     </div>
   </q-page>
 </template>
@@ -41,10 +57,22 @@ export default {
     return {
       showDropzone: true,
       showCanvas: false,
+      showVol: false,
+      volumeSlider: ref(100),
     };
   },
 
   methods: {
+    changeVol() {
+      this.$refs.audioControll.volume = this.volumeSlider / 100;
+      console.log(this.volumeSlider);
+    },
+
+    showVolFn() {
+      this.showVol = !this.showVol;
+      console.log("slider", this.volumeSlider);
+      console.log("vol", this.$refs.audioControll.volume);
+    },
     play() {
       this.$refs.audioControll.play();
     },
@@ -55,7 +83,6 @@ export default {
       if (this.$refs.audioControll.volume === 0) {
         this.$refs.audioControll.volume = 1;
       } else this.$refs.audioControll.volume = 0;
-      console.log(this.$refs.audioControll.volume);
     },
 
     // работает ток с 1 файлом, будь человеком, мапни все
@@ -163,5 +190,25 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f1f1f1;
+}
+
+.volume-pop-up {
+  position: relative;
+  bottom: 190px;
+  right: 10px;
+}
+
+.vol-iqo {
+  position: absolute;
+  bottom: 18px;
+  right: 15px;
+}
+
+.vol-percent {
+  position: absolute;
+  bottom: 7px;
+  right: 6px;
+  background: none;
+  color: black;
 }
 </style>
