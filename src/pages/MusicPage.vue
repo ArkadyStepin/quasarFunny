@@ -10,7 +10,7 @@
       <div>
         Принци работы прост. В зависимости от частоты, и тд и тп, потом напишу
         ща чет подзабыл как че там работает
-        <!-- <q-btn label="test" @click="test" /> -->
+        <q-btn label="test" @click="test" />
       </div>
       <div class="full-width">
         <canvas class="fit" ref="canvasDiv" v-show="showCanvas"></canvas>
@@ -19,27 +19,39 @@
         <DropZone @drop.prevent="drop" ref="dropMusicFile" />
       </div>
     </div>
-    <div class="audio-bar row no-wrap justify-between">
-      <div>
-        <audio ref="audioControll"></audio>
-        <q-btn label="play" color="grey-4" @click="play" />
-        <q-btn label="pause" color="grey-4" @click="pause" />
-        <q-btn label="muted" color="grey-4" @click="muted" />
+    <div class="audio-bar column no-wrap">
+      <audio ref="audioControll"></audio>
+      <div class="progress">
+        <progress
+          class="progress-line"
+          value="0"
+          max="100"
+          min="0"
+          ref="progress"
+          @click="audioProgress"
+        ></progress>
       </div>
-      <div class="q-pa-xs" @mouseenter="showVolFn" @mouseleave="showVolFn">
-        <div class="volume-pop-up" v-show="showVol">
-          <q-slider
-            @change="changeVol"
-            v-model="volumeSlider"
-            :min="0"
-            :max="100"
-            color="purple-11"
-            vertical
-            reverse
-          />
+      <div class="controll-elements row no-wrap justify-between">
+        <div>
+          <q-btn label="play" color="grey-4" @click="play" />
+          <q-btn label="pause" color="grey-4" @click="pause" />
+          <q-btn label="muted" color="grey-4" @click="muted" />
         </div>
-        <q-icon name="volume_up" class="q-ma-xs vol-iqo" />
-        <q-badge class="vol-percent"> {{ volumeSlider }}% </q-badge>
+        <div class="q-pa-xs" @mouseenter="showVolFn">
+          <div class="volume-pop-up" v-show="showVol">
+            <q-slider
+              @change="changeVol"
+              v-model="volumeSlider"
+              :min="0"
+              :max="100"
+              color="purple-11"
+              vertical
+              reverse
+            />
+          </div>
+          <q-icon name="volume_up" class="q-ma-xs vol-iqo" />
+          <q-badge class="vol-percent"> {{ volumeSlider }}% </q-badge>
+        </div>
       </div>
     </div>
   </q-page>
@@ -63,15 +75,27 @@ export default {
   },
 
   methods: {
+    test() {
+      const trackDuration = this.$refs.audioControll.duration;
+      const currentTime = this.$refs.audioControll.currentTime; // прогрес барр найди нужное событие или вочер накинь
+      const progressValue = this.$refs.progress.value;
+      this.$refs.progress.value = Math.round(
+        (currentTime * 100) / trackDuration
+      );
+    },
+    audioProgress(e) {
+      const progress = this.$refs.progress;
+      const pos =
+        (e.pageX - progress.offsetLeft - progress.offsetParent.offsetLeft) /
+        progress.offsetWidth;
+      this.$refs.audioControll.currentTime =
+        pos * this.$refs.audioControll.duration;
+    },
     changeVol() {
       this.$refs.audioControll.volume = this.volumeSlider / 100;
-      console.log(this.volumeSlider);
     },
-
     showVolFn() {
       this.showVol = !this.showVol;
-      console.log("slider", this.volumeSlider);
-      console.log("vol", this.$refs.audioControll.volume);
     },
     play() {
       this.$refs.audioControll.play();
@@ -177,6 +201,27 @@ export default {
   height: 50px;
   box-shadow: 0px -2px 10px #9100ff;
   background: rgb(219 77 230 / 85%);
+}
+
+.progress-line {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 81%;
+  margin-bottom: 0.5rem;
+  border: none;
+  color: #0095dd;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.progress-line::-moz-progress-bar {
+  background-color: #0095dd;
+}
+
+.progress-line::-webkit-progress-value {
+  background-color: #0095dd;
 }
 
 .file-info {
